@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.css?v=16" />
 </head>
 
 <body>
@@ -38,7 +38,6 @@
   <header class="hero">
     <div class="wrap hero-stack">
       <div class="hero-copy">
-        <span class="hero-badge"></span>
         <h1>See Your Agents In Action
         </h1>
         <div class="hero-tabs">
@@ -74,7 +73,8 @@
     <!-- live product capture -->
     <div class="hero-shot">
       <div class="hero-media">
-        <img src="img/agent-gui-demo.gif" alt="AgentGUI live office floor demo" width="1280" height="720" />
+        <video src="assets/demos/agentgui_demo_video.mp4" loop muted playsinline preload="none"
+          width="1920" height="1080" aria-label="AgentGUI live office floor demo"></video>
       </div>
     </div>
   </header>
@@ -485,7 +485,7 @@
 
     // ── lazy video: load + play only when on-screen, pause when off ──
     (function () {
-      const vids = document.querySelectorAll(".media video, .shot-body video");
+      const vids = document.querySelectorAll(".hero-media video, .media video, .shot-body video");
       if (!vids.length) return;
       if (!("IntersectionObserver" in window)) {
         vids.forEach((v) => { v.setAttribute("autoplay", ""); v.play().catch(() => { }); });
