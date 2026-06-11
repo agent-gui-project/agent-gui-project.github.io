@@ -451,27 +451,13 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.02em; }
   background: #0b0b18;
   box-shadow: 0 30px 70px -30px rgba(0,0,0,0.7);
 }
-.hero-media img { display: block; width: 100%; height: auto; }
-.demo-slot {
-  width: 100%;
-  background: #0e0e20;
-  overflow: hidden;
-  line-height: 0;
-}
-.demo-slot video,
-.demo-slot img {
+.hero-media img,
+.hero-media video {
   display: block;
   width: 100%;
   height: auto;
+  vertical-align: top;
 }
-.demo-slot-ph {
-  position: relative; z-index: 0;
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
-  color: var(--text-mute);
-  font-family: var(--mono); font-size: 15px; letter-spacing: 0.02em;
-  pointer-events: none;
-}
-.demo-slot-ph svg { width: 52px; height: 52px; opacity: 0.45; }
 
 /* feature screenshots — uniform frames, natural aspect inside */
 .shot-body { background: #0b0b18; line-height: 0; }
