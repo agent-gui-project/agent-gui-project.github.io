@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 
 <body>
@@ -25,9 +25,9 @@
         <img src="assets/brand/full-logo.png" alt="" class="brand-logo" />
       </a>
       <div class="nav-links">
-        <a href="#capabilities">Capabilities</a>
-        <a href="#demos">Demos</a>
         <a href="#features">Features</a>
+        <a href="#demos">Demos</a>
+        <a href="#details">Details</a>
       </div>
     </div>
   </nav>
@@ -74,19 +74,13 @@
     <!-- live product capture -->
     <div class="hero-shot">
       <div class="hero-media">
-        <div class="diorama-bar">
-          <span class="tl" style="background:#e94560"></span>
-          <span class="tl" style="background:#ffd166"></span>
-          <span class="tl" style="background:#4ecca3"></span>
-          <span class="label">agentgui · live floor</span>
-        </div>
-        <video src="assets/demos/agentgui_demo_video.mp4" autoplay loop muted playsinline></video>
+        <img src="img/agent-gui-demo.gif" alt="AgentGUI live office floor demo" width="1280" height="720" />
       </div>
     </div>
   </header>
 
-  <!-- ══ CAPABILITIES ══ -->
-  <section class="section-pad" id="capabilities">
+  <!-- ══ Features ══ -->
+  <section class="section-pad" id="features">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">What it does</span>
@@ -221,8 +215,8 @@
     </div>
   </section>
 
-  <!-- ══ FEATURES ══ -->
-  <section class="section-pad" id="features" style="padding-bottom:40px">
+  <!-- ══ DETAILS ══ -->
+  <section class="section-pad" id="details" style="padding-bottom:40px">
     <div class="wrap">
       <div class="section-head reveal" style="margin-bottom:24px">
         <span class="eyebrow">A closer look</span>
@@ -395,9 +389,9 @@
         <div class="f-copy">
           <span class="eyebrow">Oversight</span>
           <h3>A manager that keeps watch</h3>
-          <p>An optional manager patrols the floor, audits each agent's work against its task, and intervenes when
+          <p>An autonomous manager patrols the floor, audits each agent's work against its task, and intervenes when
             results
-            miss the mark — so long-running jobs stay on track without you hovering over them.</p>
+            miss the mark. Long-running jobs stay on track without requiring manual intervention.</p>
           <ul class="f-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -410,7 +404,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path d="M20 6 9 17l-5-5" />
-              </svg><span><b>Tunable idle threshold</b> so it nudges at the right moment.</span></li>
+              </svg><span><b>Tunable idle threshold</b> to nudge at the right cadence.</span></li>
           </ul>
         </div>
         <div class="f-shot">
@@ -420,8 +414,8 @@
                 style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
               <span class="path">agentgui · manager audit</span>
             </div>
-            <div class="shot-body"><img src="assets/screenshots/manager_watches.png"
-                alt="AgentGUI manager auditing tasks and outputs on the floor" /></div>
+            <div class="shot-body"><video src="assets/demos/manager_steer_convo.mp4" loop muted playsinline preload="none"
+                aria-label="AgentGUI manager steering an agent conversation"></video></div>
           </div>
         </div>
       </div>
@@ -435,10 +429,10 @@
         <img src="assets/brand/full-logo.png" alt="AgentGUI" class="foot-brand-logo" />
       </a>
       <div class="foot-links">
-        <a href="#capabilities">Capabilities</a>
-        <a href="#demos">Demos</a>
         <a href="#features">Features</a>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="#demos">Demos</a>
+        <a href="#details">Details</a>
+        <a href="https://github.com/eth-medical-ai-lab/agent-gui" target="_blank" rel="noopener">GitHub</a>
       </div>
       <img src="assets/brand/eth-logo.png" alt="ETH Zürich" class="foot-partner-logo" />
       <a href="https://bsse.ethz.ch/mail" target="_blank" rel="noopener" class="foot-partner-link">
@@ -491,7 +485,7 @@
 
     // ── lazy video: load + play only when on-screen, pause when off ──
     (function () {
-      const vids = document.querySelectorAll(".media video");
+      const vids = document.querySelectorAll(".media video, .shot-body video");
       if (!vids.length) return;
       if (!("IntersectionObserver" in window)) {
         vids.forEach((v) => { v.setAttribute("autoplay", ""); v.play().catch(() => { }); });
@@ -516,6 +510,26 @@
       }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
       els.forEach((e) => io.observe(e));
     })();
+
+  // ── in-page nav (offset for sticky header) ──
+  (function () {
+    const nav = document.querySelector(".nav");
+    const offset = () => (nav?.offsetHeight ?? 72) + 12;
+    document.querySelectorAll('.nav-links a[href^="#"], .foot-links a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        if (!href || href === "#" || href === "#top") return;
+        const el = document.getElementById(href.slice(1));
+        if (!el) return;
+        e.preventDefault();
+        window.scrollTo({
+          top: el.getBoundingClientRect().top + window.scrollY - offset(),
+          behavior: "smooth",
+        });
+        history.pushState(null, "", href);
+      });
+    });
+  })();
   </script>
 
 </body>
