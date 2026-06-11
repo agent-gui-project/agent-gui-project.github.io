@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgentGUI — Watch your AI agents work</title>
+  <meta name="description"
+    content="AgentGUI is an open-source desktop for orchestrating teams of AI agents — visualized as a living pixel-art office. Create specialized agents, drag-and-assign tasks, share team files, and supervise long-horizon work in real time." />
+  <link rel="icon" type="image/png" href="assets/brand/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Silkscreen:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=8" />
+</head>
+
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <img src="assets/brand/full-logo.png" alt="" class="brand-logo" />
+      </a>
+      <div class="nav-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#demos">Demos</a>
+        <a href="#features">Features</a>
+      </div>
+    </div>
+  </nav>
+
+  <span id="top"></span>
+
+  <!-- ══ HERO / ABSTRACT ══ -->
+  <header class="hero">
+    <div class="wrap hero-stack">
+      <div class="hero-copy">
+        <span class="hero-badge"></span>
+        <h1>See Your Agents In Action
+        </h1>
+        <div class="hero-tabs">
+          <span class="hero-tab"><b>∞</b> Agents per team</span>
+          <span class="hero-tab">Supports <b>100%</b>local deployment and inference</span>
+        </div>
+        <p class="hero-lead">Agents are great. As they work 24/7, how can we best understand their traces, and keep
+          them on track?<br> AgentGUI provides a living pixel-art interface to observe and orchestrate
+          teams of AI agents in real time. </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://github.com/eth-medical-ai-lab/agent-gui" target="_blank"
+            rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z" />
+            </svg>
+            View on GitHub
+          </a>
+          <div class="cmd">
+            <span class="pmt">$</span>
+            <span id="clone-cmd">git clone https://github.com/eth-medical-ai-lab/agent-gui</span>
+            <span class="cp" id="copyBtn" title="Copy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- live product capture -->
+    <div class="hero-shot">
+      <div class="hero-media">
+        <div class="diorama-bar">
+          <span class="tl" style="background:#e94560"></span>
+          <span class="tl" style="background:#ffd166"></span>
+          <span class="tl" style="background:#4ecca3"></span>
+          <span class="label">agentgui · live floor</span>
+        </div>
+        <div class="demo-slot">
+          <!-- <img src="img/agent-gui_demo.gif" alt="AgentGUI live office floor demo" width="1280"
+            height="720" /> -->
+          <video src="assets/demos/agentgui_demo_video.mp4" autoplay loop muted playsinline></video>
+          <div class="demo-slot-ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polygon points="6 4 20 12 6 20 6 4" />
+            </svg>
+            <span>assets/media/demo.mp4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ══ CAPABILITIES ══ -->
+  <section class="section-pad" id="capabilities">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">What it does</span>
+        <h2>See and manage your team of agents in action.</h2>
+        <p>AgentGUI helps humans to understand actions of autonomous agents. Inspect reasoning, tool calls, artifacts
+          and outputs behind each step, all in one view. An autonomous manager keeps long-running jobs on track.</p>
+      </div>
+
+      <div class="caps-grid">
+        <div class="cap reveal" style="--accent:var(--cyan)">
+          <span class="corner"></span>
+          <div class="cap-ico" style="color:var(--cyan)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="9" cy="7" r="3" />
+              <path d="M2 21v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1" />
+              <path d="M17 11l2 2 4-4" />
+            </svg>
+          </div>
+          <h3>Seamless integration with Hermes agent</h3>
+          <p>AgentGUI automatically imports your Hermes agents. Assign an agent into action with a single click.</p>
+        </div>
+
+        <div class="cap reveal" style="--accent:var(--green)">
+          <span class="corner"></span>
+          <div class="cap-ico" style="color:var(--green)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <path d="M8 13h8M8 16h5" />
+            </svg>
+          </div>
+          <h3>Audit agents automatically as they execute long-running tasks</h3>
+          <p> An autonomous manager watches agent traces, and audits them against a modifiable task description.</p>
+        </div>
+
+        <div class="cap reveal" style="--accent:var(--purple)">
+          <span class="corner"></span>
+          <div class="cap-ico" style="color:var(--purple)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
+            </svg>
+          </div>
+          <h3>Designed with security, privacy, and local performance in mind</h3>
+          <p>Supports fully local inference solutions. Agent terminal actions are confined within sandboxes. Select
+            minimal tool
+            sets for each agent at run time for faster inference.</p>
+        </div>
+
+        <div class="cap reveal" style="--accent:var(--yellow)">
+          <span class="corner"></span>
+          <div class="cap-ico" style="color:var(--yellow)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 6 19.4a1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0-1.2-2.9H0a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 1.3 6 M19.4 9a1.7 1.7 0 0 0 1.2-2.9" />
+            </svg>
+          </div>
+          <h3>Assemble your team</h3>
+          <p>Customize agent configurations, persona, and files shared across a team of agents. Also theme the
+            workspace, pick
+            agent avatars, code themes. </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ DEMOS ══ -->
+  <section class="section-pad demos" id="demos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Demo</span>
+        <h2>AgentGUI in Action</h2>
+      </div>
+
+      <div class="demos-grid">
+        <div class="demo reveal">
+          <div class="demo-head">
+            <span class="demo-num">01</span>
+            <h3>Kick-start an analysis with a single click</h3>
+            <span class="tag">loop</span>
+          </div>
+          <div class="media tall has-media split">
+            <video src="assets/demos/start_up_demo.mp4" loop muted playsinline preload="none"></video>
+          </div>
+          <p class="demo-desc">Drop a file or a prompt staright onto the agent desk to get started.</p>
+        </div>
+
+        <div class="demo reveal">
+          <div class="demo-head">
+            <span class="demo-num">02</span>
+            <h3>Autonomous auditing and steering</h3>
+            <span class="tag">loop</span>
+          </div>
+          <div class="media tall has-media">
+            <video src="assets/demos/manager_successful_audit.mp4" loop muted playsinline preload="none"></video>
+          </div>
+          <p class="demo-desc">The manager patrols automatically audits an agent's work against the TASK.md, marks it as
+            solved or
+            steers the task back
+            on course.</p>
+        </div>
+
+        <div class="demo reveal">
+          <div class="demo-head">
+            <span class="demo-num">03</span>
+            <h3>Visualizing and inspecting long-horizon tasks</h3>
+            <span class="tag">loop</span>
+          </div>
+          <div class="media tall has-media">
+            <video src="assets/demos/gpt2_training.mp4" loop muted playsinline preload="none"></video>
+          </div>
+          <p class="demo-desc">View the long history and artifacts as a coder agent grinds through a multi-step build.
+          </p>
+        </div>
+
+        <div class="demo reveal">
+          <div class="demo-head">
+            <span class="demo-num">04</span>
+            <h3>Save and load trajectory for review</h3>
+            <span class="tag">loop</span>
+          </div>
+          <div class="media tall has-media">
+            <video src="assets/demos/load_saved_desk.mp4" loop muted playsinline preload="none"></video>
+          </div>
+          <p class="demo-desc">Load a saved trajectory to review an agent's actions and results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURES ══ -->
+  <section class="section-pad" id="features" style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="section-head reveal" style="margin-bottom:24px">
+        <span class="eyebrow">A closer look</span>
+        <h2>Workplace details, feature by feature</h2>
+      </div>
+
+      <!-- F1 -->
+      <div class="feature feature--floor reveal">
+        <div class="f-copy">
+          <span class="eyebrow">The floor</span>
+          <h3>A living office for your agents</h3>
+          <!-- Show: view desk history, view run breakdown, debug terminal, view_chat_history -->
+          <p>Monitor all details of your agents' activities in one place.</p>
+          <ul class="f-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Monitor run details</b> of agents on a dashboard.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Organize</b> agents by task topic and create shareable directories.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Spin up agents</b> with targeted memory for the same task.</span></li>
+          </ul>
+        </div>
+        <div class="f-shot">
+          <div class="shot">
+            <div class="shot-bar">
+              <span class="tl" style="background:#e94560"></span><span class="tl"
+                style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+              <span class="path">agentgui · the office floor</span>
+            </div>
+            <div class="shot-body"><img src="assets/screenshots/intro_photo.png" alt="AgentGUI office floor" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F1 gallery — edit copy below -->
+      <div class="f-gallery-section reveal">
+        <div class="f-gallery-head">
+          <span class="eyebrow"><!-- EDIT eyebrow -->At the desk</span>
+          <h3><!-- EDIT heading -->Every view an agent run needs</h3>
+          <p><!-- EDIT intro -->Open any desk to inspect what happened — from a <!-- EDIT --><b>high-level run
+              breakdown</b><!-- EDIT --> down to <!-- EDIT --><b>raw terminal output</b><!-- EDIT --> and
+            <!-- EDIT --><b>full
+              chat history</b><!-- EDIT -->.
+          </p>
+          <ul class="f-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><!-- EDIT --><b>Desk history</b><!-- EDIT --> — <!-- EDIT -->reload saved trajectories for
+                review.<!-- EDIT --></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><!-- EDIT --><b>Run breakdown</b><!-- EDIT --> — <!-- EDIT -->see reasoning, tools, and idle
+                time at
+                a glance.<!-- EDIT --></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><!-- EDIT --><b>Debug terminal</b><!-- EDIT --> — <!-- EDIT -->watch sandbox shell I/O
+                live.<!-- EDIT --></span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><!-- EDIT --><b>Chat history</b><!-- EDIT --> — <!-- EDIT -->scroll the full agent
+                conversation.<!-- EDIT --></span></li>
+          </ul>
+        </div>
+
+        <div class="f-gallery">
+          <div class="f-gallery-item">
+            <div class="shot">
+              <div class="shot-bar">
+                <span class="tl" style="background:#e94560"></span><span class="tl"
+                  style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+                <span class="path">agentgui · desk history</span>
+              </div>
+              <div class="shot-body"><img src="assets/screenshots/view_desk_history.png"
+                  alt="Saved desk history view" /></div>
+            </div>
+            <p class="f-gallery-cap"><b><!-- EDIT label -->Saved desk history</b><!-- EDIT --> —
+              <!-- EDIT caption -->load a prior
+              session and replay its trajectory.<!-- EDIT -->
+            </p>
+          </div>
+          <div class="f-gallery-item">
+            <div class="shot">
+              <div class="shot-bar">
+                <span class="tl" style="background:#e94560"></span><span class="tl"
+                  style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+                <span class="path">agentgui · run breakdown</span>
+              </div>
+              <div class="shot-body"><img src="assets/screenshots/view_run_breakdown.png"
+                  alt="Run breakdown overview" /></div>
+            </div>
+            <p class="f-gallery-cap"><b><!-- EDIT label -->Run breakdown overview</b><!-- EDIT --> —
+              <!-- EDIT caption -->time-resolved view of reasoning, tools, and idle stretches.<!-- EDIT -->
+            </p>
+          </div>
+          <div class="f-gallery-item">
+            <div class="shot">
+              <div class="shot-bar">
+                <span class="tl" style="background:#e94560"></span><span class="tl"
+                  style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+                <span class="path">agentgui · debug terminal</span>
+              </div>
+              <div class="shot-body"><img src="assets/screenshots/view_debug_terminal.png" alt="Debug terminal view" />
+              </div>
+            </div>
+            <p class="f-gallery-cap"><b><!-- EDIT label -->Debug terminal</b><!-- EDIT --> —
+              <!-- EDIT caption -->inspect sandbox
+              shell commands and output.<!-- EDIT -->
+            </p>
+          </div>
+          <div class="f-gallery-item">
+            <div class="shot">
+              <div class="shot-bar">
+                <span class="tl" style="background:#e94560"></span><span class="tl"
+                  style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+                <span class="path">agentgui · chat history</span>
+              </div>
+              <div class="shot-body"><img src="assets/screenshots/view_chat_history.png" alt="Chat history view" />
+              </div>
+            </div>
+            <p class="f-gallery-cap"><b><!-- EDIT label -->Chat history</b><!-- EDIT --> — <!-- EDIT caption -->read the
+              full
+              back-and-forth with the agent.<!-- EDIT --></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- F2 -->
+      <div class="feature flip reveal">
+        <div class="f-copy">
+          <span class="eyebrow">Deployment</span>
+          <h3>Arrange and manage your agents</h3>
+          <p>Create customized Hermes profiles, and select at run time minimal tool scope for efficiency.</p>
+          <ul class="f-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Fully local app deployment</b> available — no cloud required.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Select run time tool access</b> per agent, so each gets only what it needs.</span></li>
+          </ul>
+        </div>
+        <div class="f-shot">
+          <div class="shot">
+            <div class="shot-bar">
+              <span class="tl" style="background:#e94560"></span><span class="tl"
+                style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+              <span class="path">agentgui · deployment</span>
+            </div>
+            <div class="shot-body"><img src="assets/screenshots/runtime_selection.png"
+                alt="AgentGUI deployment — local run with scoped tool access" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F4 -->
+      <div class="feature reveal">
+        <div class="f-copy">
+          <span class="eyebrow">Oversight</span>
+          <h3>A manager that keeps watch</h3>
+          <p>An optional manager patrols the floor, audits each agent's work against its task, and intervenes when
+            results
+            miss the mark — so long-running jobs stay on track without you hovering over them.</p>
+          <ul class="f-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Audits</b> output against the original task spec.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Intervenes</b> with another pass when checks fail.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg><span><b>Tunable idle threshold</b> so it nudges at the right moment.</span></li>
+          </ul>
+        </div>
+        <div class="f-shot">
+          <div class="shot">
+            <div class="shot-bar">
+              <span class="tl" style="background:#e94560"></span><span class="tl"
+                style="background:#ffd166"></span><span class="tl" style="background:#4ecca3"></span>
+              <span class="path">agentgui · manager audit</span>
+            </div>
+            <div class="shot-body"><img src="assets/screenshots/manager_watches.png"
+                alt="AgentGUI manager auditing tasks and outputs on the floor" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="wrap foot-inner">
+      <a class="brand" href="#top">
+        <img src="assets/brand/full-logo.png" alt="AgentGUI" class="foot-brand-logo" />
+      </a>
+      <div class="foot-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#demos">Demos</a>
+        <a href="#features">Features</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <img src="assets/brand/eth-logo.png" alt="ETH Zürich" class="foot-partner-logo" />
+      <img src="assets/brand/lab-logo.png" alt="Medical AI Lab" class="foot-partner-logo foot-partner-logo--lab" />
+      <div class="foot-note">Open source · MIT licensed</div>
+    </div>
+  </footer>
+
+  <script src="figures.js"></script>
+  <script>
+    // ── populate the hero diorama with real pixel agents ──
+    (function () {
+      const desks = document.getElementById("desks");
+      if (!desks || !window.agentFigureSVG) return;
+      const crew = [
+        { archetype: "coder", color: "#4a8eff", state: "working", name: "coder" },
+        { archetype: "researcher", color: "#e67e22", state: "thinking", name: "scout" },
+        { archetype: "local", color: "#2ecc71", state: "idle", name: "chat" },
+      ];
+      desks.innerHTML = crew.map(a => `
+        <div class="station ${a.state === "working" ? "running" : ""}">
+          <div class="fig-wrap">${window.agentFigureSVG({ archetype: a.archetype, color: a.color, state: a.state, scale: 1.35 })}</div>
+          <div class="desk"></div>
+          <div class="desk-name">${a.name}</div>
+        </div>`).join("");
+
+      const mgr = document.getElementById("manager");
+      if (mgr) {
+        mgr.innerHTML =
+          window.agentFigureSVG({ archetype: "default", color: "#ffd166", state: "idle", scale: 1.15 }) +
+          `<div class="tag">manager</div>`;
+      }
+    })();
+
+    // ── copy clone command ──
+    (function () {
+      const btn = document.getElementById("copyBtn");
+      const cmd = document.getElementById("clone-cmd");
+      if (!btn || !cmd) return;
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(cmd.textContent.trim());
+          const old = btn.innerHTML;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#4ecca3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+          setTimeout(() => (btn.innerHTML = old), 1400);
+        } catch (e) { /* clipboard blocked */ }
+      });
+    })();
+
+    // ── lazy video: load + play only when on-screen, pause when off ──
+    (function () {
+      const vids = document.querySelectorAll(".media video");
+      if (!vids.length) return;
+      if (!("IntersectionObserver" in window)) {
+        vids.forEach((v) => { v.setAttribute("autoplay", ""); v.play().catch(() => { }); });
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          const v = en.target;
+          if (en.isIntersecting) { v.play().catch(() => { }); }
+          else { v.pause(); }
+        });
+      }, { threshold: 0.35 });
+      vids.forEach((v) => io.observe(v));
+    })();
+
+    // ── scroll reveal ──
+    (function () {
+      const els = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("in")); return; }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+      els.forEach((e) => io.observe(e));
+    })();
+  </script>
+
+  <!-- bundler splash thumbnail -->
+  <template id="__bundler_thumbnail" data-bg-color="#14142a">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" fill="#14142a" />
+      <g shape-rendering="crispEdges">
+        <rect x="34" y="34" width="32" height="26" fill="#cfd6e0" />
+        <rect x="40" y="42" width="6" height="6" fill="#19b6d8" />
+        <rect x="54" y="42" width="6" height="6" fill="#19b6d8" />
+        <rect x="44" y="28" width="12" height="6" fill="#cfd6e0" />
+        <rect x="48" y="22" width="4" height="6" fill="#19b6d8" />
+        <circle cx="50" cy="48" r="22" fill="none" stroke="#19b6d8" stroke-width="4" />
+        <rect x="66" y="64" width="14" height="6" fill="#19b6d8" transform="rotate(45 66 64)" />
+      </g>
+    </svg>
+  </template>
+
+</body>
+
+</html>
