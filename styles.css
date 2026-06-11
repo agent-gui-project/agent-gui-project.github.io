@@ -680,6 +680,14 @@ footer {
   opacity: 0.95;
 }
 .foot-partner-logo--lab { height: 52px; }
+.foot-partner-link {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  transition: opacity .15s;
+}
+.foot-partner-link:hover { opacity: 0.85; }
 .foot-note {
   font-size: 13px;
   color: var(--text-mute);
